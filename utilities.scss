@@ -1,0 +1,201 @@
+@use "src/styles/theme";
+// text-colors
+$colors: (
+    gray: theme.$text,
+    primary: theme.$primary,
+    secondary: theme.$secondary,
+    terciary: theme.$terciary,
+    quat: theme.$quaternary,
+    alter: theme.$alter,
+    error: theme.$error,
+    warning: theme.$warning,
+    success: theme.$success,
+    other: theme.$other,
+);
+
+@each $name, $text-color in $colors {
+    .color-#{$name} {
+        color: $text-color;
+    }
+}
+
+// Dynamic Width
+:root {
+    --d-container-width: 100%;
+}
+
+.d-container {
+    width: var(--d-container-width);
+}
+
+@mixin container-w($size) {
+    width: $size;
+}
+
+// Border
+.b-radius {
+    border-radius: theme.$border-r;
+}
+
+@for $i from 1 to 5 {
+    .border-#{$i} {
+        border: $i * 1px #{solid};
+    }
+}
+
+@for $i from 1 to 5 {
+    .border-b-#{$i} {
+        border-bottom: $i * 1px #{solid};
+        border-top: 0;
+        border-right: 0;
+        border-left: 0;
+    }
+}
+
+@for $i from 1 to 5 {
+    .border-t-#{$i} {
+        border-top: $i * 1px #{solid};
+        border-bottom: 0;
+        border-right: 0;
+        border-left: 0;
+    }
+}
+
+@for $i from 1 to 5 {
+    .border-l-#{$i} {
+        border-left: $i * 1px #{solid};
+        border-bottom: 0;
+        border-right: 0;
+        border-top: 0;
+    }
+}
+
+@for $i from 1 to 5 {
+    .border-r-#{$i} {
+        border-right: $i * 1px #{solid};
+        border-bottom: 0;
+        border-top: 0;
+        border-left: 0;
+    }
+}
+
+.b-dashed {
+    border-style: dashed;
+}
+
+@each $name, $border-color in $colors {
+    .border-c-#{$name} {
+        border-color: $border-color;
+    }
+}
+
+// Rows
+%row-style {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.row-c-2 {
+    @extend %row-style;
+    div {
+        height: 48%;
+    }
+}
+
+.row-c-3 {
+    @extend %row-style;
+    div.row-c {
+        height: 32%;
+    }
+}
+
+.fs-6 {
+    font-size: 1rem;
+}
+
+// opacity-values
+
+@for $i from 0 to 10 {
+    .opacity-#{$i} {
+        opacity: $i * 0.1;
+    }
+}
+
+// Positioning
+
+@for $i from 1 to 10 {
+    .top-#{$i} {
+        top: $i * 0.5rem;
+    }
+}
+
+@for $i from 1 to 10 {
+    .right-#{$i} {
+        right: $i * 0.5rem;
+    }
+}
+
+@for $i from 1 to 10 {
+    .left-#{$i} {
+        left: $i * 0.5rem;
+    }
+}
+
+@for $i from 1 to 10 {
+    .bottom-#{$i} {
+        bottom: $i * 0.5rem;
+    }
+}
+
+//animations
+
+// opacity
+@keyframes opacity-c {
+    0% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0.2;
+    }
+}
+
+@mixin anim-pulse($pulse-color) {
+    @keyframes pulse {
+        from {
+            box-shadow: 0 0 0 3px rgba(var($pulse-color), 1);
+        }
+        to {
+            box-shadow: 0 0 0 10px rgba(var($pulse-color), 0);
+        }
+    }
+}
+
+.amin-rotate {
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@mixin bg-status($bg-color) {
+    @keyframes bg-status {
+        from {
+            background-color: rgba($bg-color, 0.3);
+            border-color: rgba($bg-color, 0.3);
+        }
+        to {
+            background-color: rgba($bg-color, 0.3);
+            border-color: rgba($bg-color, 0.3);
+        }
+    }
+}
